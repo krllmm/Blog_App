@@ -4,35 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $articles = Article::all();
         return view('article.index', compact('articles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('article.create');
+        $categories = Category::all();
+        return view('article.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'string',
             'content' => 'string',
+            'category_id' => ''
         ]);
 
         $data = $request->all();
@@ -47,25 +41,18 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Article $article)
     {
-        return view('article.show', compact('article'));
+        $category = $article->category;
+        $article_category = $category->category;
+        return view('article.show', compact('article', 'article_category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Article $article)
     {
         return view('article.edit', compact('article'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Article $article)
     {
         $request->validate([
@@ -92,9 +79,6 @@ class ArticleController extends Controller
         return redirect()->route('articles.show', $article->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Article $article)
     {
         if(Storage::exists($article->image)){

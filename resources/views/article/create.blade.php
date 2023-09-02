@@ -14,5 +14,13 @@
         <label for="image">image</label>
         <input type="file" name="image" placeholder="Image">
     </div>
+    <div>
+        <label for="category">categoty</label>
+        <select name="category_id">
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}"> {{ $category->category}}</option>
+            @endforeach
+        </select>
+    </div>
     <button type="submit">Submit</button>
 </form>
