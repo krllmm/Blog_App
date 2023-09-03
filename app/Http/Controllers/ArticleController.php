@@ -34,12 +34,8 @@ class ArticleController extends Controller
         ]);
 
         $data = $request->all();
-
         $tags = $data['tags'];
         unset($data['tags']);
-
-
-
 
         if($request->file('image') != null){
             $path = $request->file('image')->storeAs('', $request->image->getClientOriginalName());
@@ -47,9 +43,7 @@ class ArticleController extends Controller
         }
 
         $article = Article::create($data);
-
         $article->tags()->attach($tags);
-
         return redirect()->route('articles.index');
     }
 
@@ -58,7 +52,6 @@ class ArticleController extends Controller
         $category = $article->category;
         $article_category = $category->category;
         $tags = $article->tags;
-
         return view('article.show', compact('article', 'article_category', 'tags'));
     }
 
@@ -79,12 +72,10 @@ class ArticleController extends Controller
         ]);
 
         $data = $request->all();
-
         $tags = $data['tags'];
         unset($data['tags']);
 
         $data = $request->all();
-
         if($request->image == null){
             $article->update([
                 'title' => $data['title'],
@@ -101,7 +92,6 @@ class ArticleController extends Controller
         }
 
         $article->tags()->sync($tags);
-
         return redirect()->route('articles.show', $article->id);
     }
 
