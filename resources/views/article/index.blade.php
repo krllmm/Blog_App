@@ -2,6 +2,9 @@
 
 <a href="{{ route('articles.create') }}">New article</a>
 
+<a href="{{ route('tags.index') }}">Manage tags</a>
+
+<a href="{{ route('categories.index') }}">Manage categories</a>
 
 @foreach ($articles as $item)
 

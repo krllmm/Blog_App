@@ -15,5 +15,31 @@
         <label for="image">Превью</label>
         <input type="file" name="image" placeholder="Image">
     </div>
+
+
+    <div>
+        <label for="category">categoty</label>
+        <select name="category_id">
+            @foreach($categories as $category)
+                <option
+                        {{ $category->id === $article->category->id ? ' selected' : '' }}
+                        value="{{ $category->id }}"> {{ $category->category }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div>
+        <label for="tags">Tags</label>
+        <select multiple name="tags[]">
+            @foreach($tags as $tag)
+                <option
+                @foreach ($article->tags as $articleTag)
+                    {{ $tag->id === $articleTag->id ? ' selected' : '' }}
+                @endforeach
+                        value="{{ $tag->id }}"> {{ $tag->title }}</option>
+            @endforeach
+        </select>
+    </div>
+
     <button type="submit" class="btn btn-primary">Изменить</button>
 </form>

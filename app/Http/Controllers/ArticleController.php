@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\ArticleTag;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -18,7 +20,8 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('article.create', compact('categories'));
+        $tags = Tag::all();
+        return view('article.create', compact('categories', 'tags'));
     }
 
     public function store(Request $request)
@@ -26,17 +29,26 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'string',
             'content' => 'string',
-            'category_id' => ''
+            'category_id' => '',
+            'tags' => '',
         ]);
 
         $data = $request->all();
+
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+
+
 
         if($request->file('image') != null){
             $path = $request->file('image')->storeAs('', $request->image->getClientOriginalName());
             $data['image'] = $path;
         }
 
-        Article::create($data);
+        $article = Article::create($data);
+
+        $article->tags()->attach($tags);
 
         return redirect()->route('articles.index');
     }
@@ -45,12 +57,16 @@ class ArticleController extends Controller
     {
         $category = $article->category;
         $article_category = $category->category;
-        return view('article.show', compact('article', 'article_category'));
+        $tags = $article->tags;
+
+        return view('article.show', compact('article', 'article_category', 'tags'));
     }
 
     public function edit(Article $article)
     {
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('article.edit', compact('article', 'categories', 'tags'));
     }
 
     public function update(Request $request, Article $article)
@@ -58,14 +74,22 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'string',
             'content' => 'string',
+            'category_id' => '',
+            'tags' => '',
         ]);
+
+        $data = $request->all();
+
+        $tags = $data['tags'];
+        unset($data['tags']);
 
         $data = $request->all();
 
         if($request->image == null){
             $article->update([
                 'title' => $data['title'],
-                'content' =>$data['content']
+                'content' => $data['content'],
+                'category_id' => $data['category_id'],
             ]);
         }else{
             if(Storage::exists($article->image)){
@@ -76,13 +100,17 @@ class ArticleController extends Controller
             $article->update($data);
         }
 
+        $article->tags()->sync($tags);
+
         return redirect()->route('articles.show', $article->id);
     }
 
     public function destroy(Article $article)
     {
-        if(Storage::exists($article->image)){
-            Storage::delete($article->image);
+        if($article->image != "default_article_preview_image.png"){
+            if(Storage::exists($article->image)){
+                Storage::delete($article->image);
+            }
         }
         $article->delete();
         return redirect()->route('articles.index');
