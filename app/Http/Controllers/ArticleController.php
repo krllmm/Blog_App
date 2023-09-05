@@ -83,12 +83,19 @@ class ArticleController extends Controller
                 'category_id' => $data['category_id'],
             ]);
         }else{
-            if(Storage::exists($article->image)){
-                Storage::delete($article->image);
+            if($article->image != "default_article_preview_image.png"){
+                if(Storage::exists($article->image)){
+                    Storage::delete($article->image);
+                }
             }
             $path = $request->file('image')->storeAs('', $request->image->getClientOriginalName());
             $data['image'] = $path;
-            $article->update($data);
+            $article->update([
+                'title' => $data['title'],
+                'content' => $data['content'],
+                'image' => $data['image'],
+                'category_id' => $data['category_id'],
+            ]);
         }
 
         $article->tags()->sync($tags);
