@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
     <script src="{{ asset('build/assets/app.js') }}" defer></script>
 
-    <title>Document</title>
+    <title>Blog - @yield('title')</title>
 </head>
 <body>
 
-    <div class="m-0">
+    <div class="col-12 m-0">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -41,7 +41,7 @@
 
     </div>
 
-    <div class="container-fluid col-9 p-0">
+    <div class="container-fluid col-12 p-0">
         @yield('content')
     </div>
 

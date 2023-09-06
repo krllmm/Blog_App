@@ -1,7 +1,12 @@
 <link href="{{ asset('css/show.css') }}" rel="stylesheet">
 @extends('layouts.main')
+
+@section('title')
+    Articles
+@endsection
+
 @section('content')
-    <div class="d-flex gap-3">
+    <div class="col-8 d-flex gap-3 mx-auto">
 
         <h2 class="m-0">Articles</h2>
 
@@ -11,7 +16,6 @@
 
     <div class="container">
         <div class="row">
-            <div class="row">
 
                 @foreach ($articles as $item)
                     <div class="col-md-12 text-center">
@@ -42,7 +46,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+
         </div>
     </div>
 @endsection

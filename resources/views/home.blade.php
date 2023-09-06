@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="{{ asset("css/home.css") }}">
-
-
 @extends('layouts.main')
+
+@section('title')
+    Home
+@endsection
+
 @section('content')
 <header>
 
