@@ -1,5 +1,12 @@
+@extends('layouts.main')
+@section('title')
+    Create article
+@endsection
 
-<h1> {{ $article->title }} </h1>
+@section('content')
+
+    <h1 class="row justify-content-center">{{ $article->title }}</h1>
+
 
 <h4> {{ $article->content }} </h4>
 
@@ -17,4 +24,4 @@
 <a href="{{ route('articles.index') }}">Home</a>
 
 
-
+@endsection

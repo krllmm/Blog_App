@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <div class="col-8 d-flex gap-3 mx-auto">
+    <div class="container d-flex gap-3 mx-auto">
 
         <h2 class="m-0">Articles</h2>
 
@@ -36,10 +36,10 @@
                                     </form>
 
                                     <form>
-                                        <button href="{{ route('articles.show', $item->id) }}"
-                                            class="btn btn-block btn-primary">Read full</button>
-                                        <button href="{{ route('articles.edit', $item->id) }}"
-                                            class="btn btn-block btn-secondary">Edit</button>
+                                        <a href="{{ route('articles.show', $item->id) }}"
+                                            class="btn btn-block btn-primary">Read full</a>
+                                        <a href="{{ route('articles.edit', $item->id) }}"
+                                            class="btn btn-block btn-secondary">Edit</a>
                                     </form>
                                 </div>
                             </div>
