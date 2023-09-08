@@ -1,4 +1,5 @@
 <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+<link href="{{ asset('css/articles.css') }}" rel="stylesheet">
 @extends('layouts.main')
 
 @section('title')
@@ -21,11 +22,23 @@
                     <div class="col-md-12 text-center">
                         <div class="box">
                             <div class="box-content">
-                                <h1 class="tag-title">{{ $item->title }}</h1>
-                                <hr />
-                                <img src="{{ asset('storage/' . $item->image) }}" width="150px">
-                                <p>{{ $item->content }}</p>
-                                <br />
+
+                                <section class="py-5">
+                                    <div class="container px-4 px-lg-5 my-5">
+                                        <div class="row gx-4 gx-lg-5 align-items-center">
+                                            <div class="col-md-7 p-0"><img class="mb-5 mb-md-0 image" src="{{ asset('storage/' . $item->image) }}" alt="..." /></div>
+                                            <div class="col-md-5 p-0">
+
+                                                <h1 class="display-5 fw-bolder">{{ $item->title }}</h1>
+
+                                                <p class="lead">{{ $item->content }}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+
                                 <div class="d-flex gap-1">
 
                                     <form action="{{ route('articles.destroy', $item->id) }}" method="post">
