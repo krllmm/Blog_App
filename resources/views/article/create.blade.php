@@ -71,7 +71,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="content">Content</label>
-                                            <textarea name="content" class="form-control" placeholder="Write your article here." rows="4" required="required"
+                                            <textarea name="content" class="form-control" placeholder="Write your article here." rows="8" required="required"
                                                 data-error="Article should have content"></textarea>
                                         </div>
 

@@ -1,0 +1,13 @@
+.lead{
+    font-size: 22px;
+    max-width: 40em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.image{
+    width: 620px;
+    height: 380px;
+    object-fit: cover;
+}

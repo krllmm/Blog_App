@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{asset('css/show_article.css')}}">
+<link href="{{ asset('css/article.css') }}" rel="stylesheet">
 @extends('layouts.main')
 @section('title')
     View Article
