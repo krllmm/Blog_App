@@ -1,0 +1,13 @@
+.content{
+    min-height: calc(100vh - 174px);
+}
+
+tr{
+    text-align: center;
+    vertical-align: middle;
+}
+
+td{
+    font-size: 20px;
+    vertical-align: middle;
+}

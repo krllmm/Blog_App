@@ -6,7 +6,7 @@
 
 @section('content')
         <!-- Page content-->
-        <div class="container mt-5">
+        <div class="container mt-5 content">
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
@@ -57,10 +57,4 @@
                 </div>
             </div>
         </div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Blog App 2023</p>
-            </div>
-        </footer>
 @endsection

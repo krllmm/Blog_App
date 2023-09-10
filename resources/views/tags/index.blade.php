@@ -1,19 +1,19 @@
 @extends('layouts.main')
+<link rel="stylesheet" href="{{ asset('css/tags_categories.css') }}">
 
 @section('title')
     Manage tags
 @endsection
 
 @section('content')
-    <div class="container-fluid col-9 p-0">
+    <div class="container-fluid col-9 p-0 content">
         <h1 class="row justify-content-center">Tags</h1>
-
 
         <table class="table table-success table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Tag name</th>
                     <th scope="col">Delete</th>
                     <th scope="col">Edit</th>
                 </tr>
@@ -24,7 +24,7 @@
                         <th scope="row">{{ $tag->id }}</th>
                         <td>{{ $tag->title }}</td>
                         <td>
-                            <form action="{{ route('tags.destroy', $tag->id) }}" method="post">
+                            <form action="{{ route('tags.destroy', $tag->id) }}" method="post" class="my-auto">
                                 @csrf
                                 @method('delete')
                                 <button href="{{ route('tags.destroy', $tag->id) }}"
@@ -39,7 +39,6 @@
         </table>
 
         <h2 class="row my-4 mx-0">Create tag</h2>
-
         <form action="{{ route('tags.store') }}" method="POST">
             @csrf
             <div class="col-9">

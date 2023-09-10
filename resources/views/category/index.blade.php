@@ -1,13 +1,13 @@
 @extends('layouts.main')
+<link rel="stylesheet" href="{{ asset('css/tags_categories.css') }}">
 
 @section('title')
     Manage categories
 @endsection
 
 @section('content')
-    <div class="container-fluid col-9 p-0">
-        <h1 class="row justify-content-center">Category</h1>
-
+    <div class="container-fluid col-9 p-0 content">
+        <h1 class="row justify-content-center">Categories</h1>
 
         <table class="table table-success table-striped">
             <thead>
@@ -24,7 +24,7 @@
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->category }}</td>
                         <td>
-                            <form action="{{ route('categories.destroy', $category->id) }}" method="post">
+                            <form action="{{ route('categories.destroy', $category->id) }}" method="post" class="my-auto">
                                 @csrf
                                 @method('delete')
                                 <button href="{{ route('categories.destroy', $category->id) }}"
@@ -39,7 +39,6 @@
         </table>
 
         <h2 class="row my-4 mx-0">Create category</h2>
-
         <form action="{{ route('categories.store') }}" method="POST">
             @csrf
             <div class="col-9">
