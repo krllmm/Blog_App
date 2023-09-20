@@ -13,7 +13,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::Paginate(5);
+        $articles = Article::Paginate(6);
         return view('article.index', compact('articles'));
     }
 

@@ -12,9 +12,15 @@
     object-fit: cover;
 }
 
-@media screen and (max-width: 900px) {
-    .image {
-        width: 410px;
-        height: 240px;
-    }
-  }
+.article_card{
+    min-height: 100%;
+}
+
+.article_card img{
+    height: 300px;
+    object-fit: cover;
+}
+
+.title a{
+    color: #333;
+}

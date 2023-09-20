@@ -12,26 +12,32 @@
         <a class="btn btn-primary" href="{{ route('articles.create') }}">Create article</a>
     </div>
     <div class="container">
-        <div class="row">
 
+
+
+
+        <ul class="row feature-list feature-list-sm list-unstyled">
             @foreach ($articles as $item)
-                <div class="col-md-12 text-center">
-                    <div class="box">
-                        <div class="box-content">
 
-                            <section class="p-0">
-                                <div class="container px-lg-5 my-5">
-                                    <div class="row gx-4 gx-lg-5 align-items-center">
-                                        <div class="col-xl-7 p-0"><img class="mb-md-0 image" src="{{ asset('storage/' . $item->image) }}" alt="..." /></div>
-                                        <div class="col-xl-5 p-0">
-                                            <h1 class="display-6 fw-bolder mt-2">{{ $item->title }}</h1>
-                                            <p class="lead px-3">{{ $item->content }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                <li class="col-12 col-md-6 col-lg-4 mt-2">
+                    <div class="card article_card">
 
-                            <div class="d-flex gap-1">
+                        <img class="card-img-top" src="{{ asset('storage/' . $item->image) }}" alt="Card image cap">
+
+                        <div class="card-body">
+                            <h4 class="card-title title">
+                                <a type="button" href="{{ route('articles.show', $item->id) }}">
+                                    {{ $item->title }}
+                                </a>
+                            </h4>
+                            <p class="card-text lead">{{ $item->content }}</p>
+                        </div>
+                        <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                            <div class="d-flex align-self-center m-0">
+                                <h5 class="m-0">{{ $item->category->category }}</h5>
+                            </div>
+
+                            <div class="d-flex flex-row gap-2">
                                 <form action="{{ route('articles.destroy', $item->id) }}" method="post" class="m-0">
                                     @csrf
                                     @method('delete')
@@ -39,18 +45,19 @@
                                         class="btn btn-block btn-danger">Delete</button>
                                 </form>
                                 <form class="m-0">
-                                    <a href="{{ route('articles.show', $item->id) }}" class="btn btn-block btn-primary">Read full</a>
                                     <a href="{{ route('articles.edit', $item->id) }}" class="btn btn-block btn-secondary">Edit</a>
                                 </form>
                             </div>
+
                         </div>
                     </div>
-                </div>
+                </li>
             @endforeach
+        </ul>
 
             <div>
                 {{ $articles->links() }}
             </div>
-        </div>
+
     </div>
 @endsection
