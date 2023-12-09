@@ -33,13 +33,14 @@ class ArticleController extends Controller
             'tags' => '',
         ]);
 
+        $path = public_path('storage/');
         $data = $request->all();
         $tags = $data['tags'];
         unset($data['tags']);
 
         if($request->file('image') != null){
-            $path = $request->file('image')->storeAs('', $request->image->getClientOriginalName());
-            $data['image'] = $path;
+            $path = $request->file('image')->move($path, $request->image->getClientOriginalName());
+            $data['image'] = $request->image->getClientOriginalName();
         }
 
         $article = Article::create($data);

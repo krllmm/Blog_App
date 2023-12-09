@@ -13,16 +13,13 @@
     </div>
     <div class="container">
 
-
-
-
         <ul class="row feature-list feature-list-sm list-unstyled">
             @foreach ($articles as $item)
 
                 <li class="col-12 col-md-6 col-lg-4 mt-2">
                     <div class="card article_card">
 
-                        <img class="card-img-top" src="{{ asset('storage/' . $item->image) }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ url('storage/' . $item->image) }}" alt="Card image cap">
 
                         <div class="card-body">
                             <h4 class="card-title title">
@@ -55,9 +52,9 @@
             @endforeach
         </ul>
 
-            <div>
-                {{ $articles->links() }}
-            </div>
+        <div>
+            {{ $articles->links() }}
+        </div>
 
     </div>
 @endsection
